@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}My Trip | {{session.username}}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col s12">
+        <h2>Welcome, {{session. name}}.</h2>
+        <h4 class="center-align">Edit Your details</h4>
+        <form actions="/edit" method="POST">
+            <input type="text" name="budg" id="budg">"Enter Budget Above:"</input>
+            <input type="text" name="num_tr" id="num_tr">"Enter Number of travellers Above:"</input>
+            <input type="text" name="loc" id="loc">"Enter Source location Above:"</input><br>
+            <input class="waves-effect waves-light btn" type="submit" value="AddInfo">
+        </form>
+        {% if error %}
+			<p class=error style="color:red"> {{ error }} </p>
+		{% endif %}
+        {% if error2 %}
+			<p class=error style="color:red"> {{ error2 }} </p>
+		{% endif %}
+        <hr/>
+    </div>
+</div>
+{% endblock %}

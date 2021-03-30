@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}Feedback | {{session.username}}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col s12">
+		<h2 class="center-align">Feedback</h2>
+		
+		<table class="responsive-table">
+			<thead>
+				<tr>
+					<th>Date Entered</th>
+					<th>Subject</th>
+					<th>Description</th>
+					<th>Write Feedback</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>sample date</th>
+					<th>Ayush</th>
+					<th>Life is the problem</th>
+					<th><a class="waves-effect waves-light btn" href="/review">Feedback</a></th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+{% if error %}
+	<p class=error style="color:red"> {{ error }} </p>
+{% endif %}
+{% if success %}
+	<p class=error style="color:green"> {{ success }} </p>
+{% endif %}
+{% if review == 1 %}
+	<div class="row">
+		<div class="col s12">
+			<h4>Review for {{ attraction_name }}</h4>
+			<form action="/create-review" method="post">
+				<input type="hidden" name="attraction_name" value="{{ attraction_name }}">
+				<h6>Title</h6>
+				{{ form.title }}<br>
+				<h6>Review</h6>
+				{{ form.body }}<br />
+	            <button class="btn waves-effect waves-light" type="submit">Submit<i class="material-icons right">send</i></button>
+			</form>
+		</div>
+	</div>
+{% endif %}
+{% endblock %}
