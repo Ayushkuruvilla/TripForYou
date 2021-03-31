@@ -1,12 +1,8 @@
 from flask import Flask, flash, render_template, request, redirect, session, url_for
-from flask_wtf import Form
-from wtforms import StringField
-from wtforms.widgets import TextArea
-from wtforms.validators import DataRequired
 import hashlib
-import locale
 import pymysql
 import time
+from datetime import date
 from pymongo import MongoClient
 import dns
 app = Flask(__name__)
@@ -179,17 +175,25 @@ def detail():
 	error=None
 	if len(list(x))==0:
 		return redirect(url_for('traveller'))
-	return 	redirect(url_for('reviews'))
+	return 	redirect(url_for('feedback'))
 
-@app.route('/review')
-def reviews():
-
-	# Lists a user's visited attractions with a "Review" button.
-	cursor = db.cursor()
-	query = view_completed_attractions_query()
-	cursor.execute(query)
-	attractions = [dict(date=row[0], name=row[1], description=row[2]) for row in cursor.fetchall()]
-	return render_template('review.html', items=attractions, session=session)
+@app.route('/feedback',methods=['POST','GET'])
+def feedback():
+	error=None
+	today = date.today()
+	x=collection3.find({"username":session['username']})
+	if request.method=='POST':
+		sub = request.form["sub"]
+		con = request.form["con"]
+		if sub == '' or con == '':
+			error = 'Please fill out both fields.'
+			return render_template('feedback.html', error=error)
+		d2 = today.strftime("%B %d, %Y")
+		collection3.insert_one({"username":session['username'],"date":d2,"subject":sub,"desc":con})
+		x=collection3.find({"username":session['username']})
+		return render_template('feedback.html',items=x)
+	else:	
+		return render_template('feedback.html', items=x)
 
 
 # Run the application
@@ -200,6 +204,7 @@ if __name__ == '__main__':
 	client=MongoClient("mongodb+srv://admin-Ayush:vSYzh9RDkmZ8dr0t@cluster0.llgkb.mongodb.net/user?retryWrites=true&w=majority")
 	collection = client.user.project
 	collection2=client.user.deets
+	collection3=client.user.feedback
 	# Make sure your database is started before running run.py
 	db_name = 'team1'
 	db = pymysql.connect(host='localhost', user='root', passwd=db_pass, db=db_name)

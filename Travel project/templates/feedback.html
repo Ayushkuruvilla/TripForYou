@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Feedback | {{session.username}}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col s12">
+		<h2 class="center-align">Feedback</h2>
+		<h4 class="center-align">Feedback is sent as an email,a copy will be sent to you aswell</h4>
+		
+		<table class="responsive-table">
+			<thead>
+				<tr>
+					<th>Date Entered</th>
+					<th>Subject</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<!--<tbody>
+				<tr>
+					<th>sample date</th>
+					<th>Ayush</th>
+					<th>Life is the problem</th>
+				</tr>
+			</tbody>
+		    -->
+			<tbody>
+                {% for item in items %}
+                    <tr>
+                        <th>{{item.date}}</th>
+                        <th>{{item.subject}}</th>
+                        <th>{{item.desc}}</th>
+                        </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+			
+		</table>
+	</div>
+</div>
+{% if error %}
+	<p class=error style="color:red"> {{ error }} </p>
+{% endif %}
+{% if success %}
+	<p class=error style="color:green"> {{ success }} </p>
+{% endif %}
+<form actions="/traveller" method="POST">
+	<input type="text" name="sub" id="sub">"Enter the subject Above:"</input>
+	<input type="text" name="con" id="con">"Enter content Above:"</input><br><br><br>
+	<input class="waves-effect waves-light btn" type="submit" value="Confirm feedback">
+</form>
+{% endblock %}
