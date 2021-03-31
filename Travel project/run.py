@@ -5,6 +5,7 @@ import time
 from datetime import date
 from pymongo import MongoClient
 import dns
+import razorpay
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8ffe05624dfe0efdf7c7f67288d4f4ce5005e0dfb6a1bc48366ef9906dd0586e'
 
@@ -195,6 +196,15 @@ def feedback():
 	else:	
 		return render_template('feedback.html', items=x)
 
+@app.route('/pay',methods=['POST','GET'])
+def pay():
+	client=razorpay.Client(auth=('rzp_test_W0iJf3S2txqRlO','4Oxi0f4A331AlQJchqWLQxfD'))
+	payment=client.order.create({'amount':500,'currency':'INR','payment_capture':'1'})
+	return render_template('pay.html',payment=payment)
+
+@app.route('/success',methods=['POST','GET'])
+def success():
+	return render_template('success.html')
 
 # Run the application
 if __name__ == '__main__':

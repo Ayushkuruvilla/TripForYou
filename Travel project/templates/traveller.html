@@ -30,11 +30,11 @@
                     </tr>
                 {% endfor %}
             </tbody>
-        </table>
+        </table><br><br><br>
         <form actions="/traveller" method="POST">
-            <input type="text" name="budg" id="budg">"Enter Budget Above:"</input>
-            <input type="text" name="num_tr" id="num_tr">"Enter Number of travellers Above:"</input>
-            <input type="text" name="loc" id="loc">"Enter Source location Above:"</input><br><br><br>
+            <input type="text" name="budg" placeholder="Enter Budget:" id="budg"/>
+            <input type="text" name="num_tr" placeholder="Enter Number Of Travellers:" id="num_tr"/>
+            <input type="text" name="loc" placeholder="Enter Source Location:" id="loc"/><br>
             <input class="waves-effect waves-light btn" type="submit" value="AddInfo">
         </form>
         {% if error %}
