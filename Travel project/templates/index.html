@@ -14,7 +14,7 @@
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}"  media="screen,projection"/>
 
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
-        <title>Travel Planner</title>
+        <title>TripForYou</title>
     </head>
 
     <body>
@@ -29,7 +29,7 @@
                     </div>
                 </li>
                 <li>
-                    <img src="static/images/barcabunkers.jpg">
+                    <img src="static/images/im.jpg">
                     <div class="caption left-align">
                         <h3>Simple.</h3>
                         <h5>Easy to use interface so you can spend more time on the important stuff.</h5>
@@ -37,21 +37,22 @@
                     </div>
                 </li>
                 <li>
-                    <img src="static/images/mountain.jpg">
+                    <img src="static/images/tra.jpg">
                     <div class="caption right-align">
                         <h3>Explore.</h3>
-                        <h5 class="light grey-text text-lighten-3">Enjoy thrilling adventures throughout Europe.</h5>
+                        <h5 class="light grey-text text-lighten-3">Enjoy thrilling adventures throughout India.</h5>
                         <a class="waves-effect waves-light btn" href="/login-page">Login/Register</a>
                     </div>
                 </li>
                 <li>
-                    <img src="static/images/waterside.jpg">
+                    <img src="static/images/im2.jpg">
                     <div class="caption center-align">
                         <h3>Relaxing</h3>
                         <h5 class="light grey-text text-lighten-3">There's a little something for everyone.</h5>
                         <a class="waves-effect waves-light btn" href="/login-page">Login/Register</a>
                     </div>
                 </li>
+                {% block content %}{% endblock %}
             </ul>
         </div>
 
