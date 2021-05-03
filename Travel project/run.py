@@ -249,7 +249,7 @@ class payments():
 
 # Run the application
 if __name__ == '__main__':
-	client=MongoClient("mongodb+srv://admin-Ayush:vSYzh9RDkmZ8dr0t@cluster0.llgkb.mongodb.net/user?retryWrites=true&w=majority")
+	client=MongoClient("ADD_YOUR_MONGOATLAS_USERNAME_AND_PASSWORD")
 	collection = client.user.project
 	collection2=client.user.deets
 	collection3=client.user.feedback
