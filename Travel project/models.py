@@ -60,8 +60,8 @@ class mail():
     def __init__(self):
         pass
     def send_email(self,name,receiver_email,sub,con):
-        sender_email = 'copperswitch839@gmail.com'
-        password=""
+        sender_email = 'ENTER_ADMIN_EMAIL'
+        password="ENTER_ADMIN_EMAIL_PASSWORD"
         msg = EmailMessage()
         msg['Subject'] = sub
         msg['From'] = receiver_email
